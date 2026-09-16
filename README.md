@@ -146,4 +146,3 @@ Detail konvensi dan resep pengujian tercatat di [`AGENTS.md`](AGENTS.md) agar pe
 
 ---
 
-Dibuat dengan bantuan AI agent ([OpenHands](https://github.com/All-Hands-AI/OpenHands)) atas nama pemilik repo.
