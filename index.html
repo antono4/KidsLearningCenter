@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Stars - Kids Learning Center</title>
+    <meta name="description" content="Little Stars Kids Learning Center - tempat aman, seru dan penuh kasih tempat anak belajar, bermain dan tumbuh setiap hari.">
+    <meta name="theme-color" content="#0284c7">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%AD%90%3C/text%3E%3C/svg%3E">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,6 +41,9 @@
                     fontFamily: {
                         fredoka: ['Fredoka', 'sans-serif'],
                         quicksand: ['Quicksand', 'sans-serif']
+                    },
+                    maxWidth: {
+                        '8xl': '88rem'
                     }
                 }
             }
@@ -48,128 +54,181 @@
         body {
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
         h1, h2, h3, h4, .font-heading {
             font-family: 'Fredoka', sans-serif;
         }
         .bg-hero-pattern {
-            background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
+            background:
+                radial-gradient(900px 420px at 88% 0%, rgba(251, 191, 36, 0.20), transparent 62%),
+                radial-gradient(720px 400px at 8% 6%, rgba(236, 72, 153, 0.12), transparent 60%),
+                linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
         }
-        .cloud-bg {
-            background-image: radial-gradient(circle, #ffffff 60%, transparent 60%);
+        .bg-sky-pattern {
+            background:
+                radial-gradient(760px 420px at 92% 8%, rgba(251, 191, 36, 0.16), transparent 58%),
+                radial-gradient(620px 420px at 4% 92%, rgba(255, 255, 255, 0.10), transparent 60%),
+                #0369a1;
+        }
+        .texture-dots {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.5px, transparent 1.5px);
+            background-size: 22px 22px;
         }
         .card-shadow {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
         }
+        /* Visible focus ring for keyboard users, readable on light and dark backgrounds */
+        :where(a, button, input):focus-visible {
+            outline: 3px solid #0369a1;
+            outline-offset: 2px;
+            border-radius: 0.5rem;
+        }
+        footer :where(a, button):focus-visible {
+            outline-color: #fcd34d;
+        }
         /* Offset scroll targets so the sticky header does not cover section headings */
-        section[id] {
-            scroll-margin-top: 5rem;
+        section[id], footer[id] {
+            scroll-margin-top: 5.5rem;
+        }
+        .photo {
+            background-color: #e2e8f0;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-700 antialiased">
 
+    <a href="#home" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-white focus:text-sky-800 focus:font-bold focus:px-4 focus:py-2 focus:rounded-xl focus:shadow-lg">
+        Lompat ke konten utama
+    </a>
+
     <!-- ================= NAVBAR ================= -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sky-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
             <!-- Logo -->
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-2xl bg-amber-400 flex items-center justify-center text-white shadow-md group-hover:rotate-12 transition-transform duration-300">
-                    <i class="fa-solid fa-star text-2xl"></i>
-                </div>
-                <div>
-                    <span class="block text-2xl font-bold font-heading text-sky-600 leading-none">Little Stars</span>
-                    <span class="text-[10px] tracking-wider uppercase font-bold text-amber-500">Kids Learning Center</span>
-                </div>
+            <a href="#home" class="flex items-center gap-3 group shrink-0">
+                <span class="w-11 h-11 md:w-12 md:h-12 rounded-2xl bg-amber-400 flex items-center justify-center text-white shadow-md group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fa-solid fa-star text-xl md:text-2xl" aria-hidden="true"></i>
+                </span>
+                <span class="block">
+                    <span class="block text-xl md:text-2xl font-bold font-heading text-sky-800 leading-none">Little Stars</span>
+                    <span class="block text-[10px] tracking-wider uppercase font-bold text-amber-700">Kids Learning Center</span>
+                </span>
             </a>
 
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8 font-semibold text-slate-600">
-                <a href="#home" class="nav-link hover:text-sky-600 transition-colors">Home</a>
-                <a href="#about" class="nav-link hover:text-sky-600 transition-colors">About Us</a>
-                <a href="#programs" class="nav-link hover:text-sky-600 transition-colors">Programs</a>
-                <a href="#activities" class="nav-link hover:text-sky-600 transition-colors">Activities</a>
-                <a href="#gallery" class="nav-link hover:text-sky-600 transition-colors">Gallery</a>
-                <a href="#contact" class="nav-link hover:text-sky-600 transition-colors">Contact</a>
+            <nav class="hidden lg:flex items-center gap-1 font-semibold text-slate-600" aria-label="Navigasi utama">
+                <a href="#home" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">Home</a>
+                <a href="#about" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">About Us</a>
+                <a href="#programs" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">Programs</a>
+                <a href="#activities" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">Activities</a>
+                <a href="#gallery" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">Gallery</a>
+                <a href="#contact" class="nav-link px-3 py-2 rounded-xl hover:text-sky-700 hover:bg-sky-50 transition-colors">Contact</a>
             </nav>
 
             <!-- CTA Button -->
-            <div class="hidden md:block">
-                <a href="#book-tour" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+            <div class="hidden lg:block shrink-0">
+                <a href="#book-tour" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-5 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 motion-safe:hover:-translate-y-0.5">
                     <span>Enroll Now</span>
-                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                    <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i>
                 </a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-700 focus:outline-none" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
-                <i class="fa-solid fa-bars"></i>
+            <button id="mobileMenuBtn" class="lg:hidden w-11 h-11 rounded-xl text-2xl text-slate-700 hover:bg-slate-100 flex items-center justify-center" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-sky-100 px-4 pt-2 pb-6 space-y-3 font-semibold">
-            <a href="#home" class="block hover:text-sky-600 py-2">Home</a>
-            <a href="#about" class="block hover:text-sky-600 py-2">About Us</a>
-            <a href="#programs" class="block hover:text-sky-600 py-2">Programs</a>
-            <a href="#activities" class="block hover:text-sky-600 py-2">Activities</a>
-            <a href="#gallery" class="block hover:text-sky-600 py-2">Gallery</a>
-            <a href="#contact" class="block hover:text-sky-600 py-2">Contact</a>
-            <a href="#book-tour" class="block w-full text-center bg-amber-400 text-slate-900 font-bold font-heading py-3 rounded-full mt-4">Enroll Now</a>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-sky-100 px-4 pt-2 pb-6 space-y-1 font-semibold">
+            <a href="#home" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">Home</a>
+            <a href="#about" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">About Us</a>
+            <a href="#programs" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">Programs</a>
+            <a href="#activities" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">Activities</a>
+            <a href="#gallery" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">Gallery</a>
+            <a href="#contact" class="block hover:bg-sky-50 hover:text-sky-700 rounded-xl px-3 py-3 transition-colors">Contact</a>
+            <a href="#book-tour" class="block w-full text-center bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading py-3 rounded-full mt-4 transition-colors">Enroll Now</a>
         </div>
     </header>
 
     <!-- ================= HERO SECTION ================= -->
-    <section id="home" class="relative bg-hero-pattern pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden">
-        <!-- Floating Stars Decor -->
-        <i class="fa-solid fa-star text-amber-300 text-2xl absolute top-10 left-10 animate-bounce"></i>
-        <i class="fa-solid fa-star text-sky-300 text-xl absolute top-32 left-1/2 animate-pulse"></i>
-        <i class="fa-solid fa-wand-magic-sparkles text-pink-300 text-3xl absolute bottom-20 right-10 animate-spin"></i>
+    <section id="home" class="relative bg-hero-pattern pt-14 pb-28 md:pt-20 md:pb-36 overflow-hidden">
+        <!-- Floating Decor -->
+        <i class="fa-solid fa-star text-amber-400/70 text-2xl absolute top-10 left-6 motion-safe:animate-bounce" aria-hidden="true"></i>
+        <i class="fa-solid fa-star text-sky-400/60 text-xl absolute top-40 left-1/3 motion-safe:animate-pulse" aria-hidden="true"></i>
+        <i class="fa-solid fa-wand-magic-sparkles text-pink-400/70 text-3xl absolute bottom-28 right-8 motion-safe:animate-spin" aria-hidden="true"></i>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
                 <!-- Left Text -->
-                <div class="space-y-6 text-center md:text-left z-10">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-sky-900 leading-tight">
-                        Where Little <span class="text-amber-500">Minds</span> Grow <span class="text-pink-500">Big Dreams</span>
+                <div class="space-y-6 text-center lg:text-left">
+                    <p class="inline-flex items-center gap-2 bg-white/80 border border-sky-100 text-sky-800 text-xs sm:text-sm font-bold font-heading px-4 py-2 rounded-full shadow-sm">
+                        <i class="fa-solid fa-heart text-pink-600" aria-hidden="true"></i>
+                        <span>Pendaftaran Tahun Ajaran Baru Dibuka</span>
+                    </p>
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-sky-900 leading-[1.1]">
+                        Where Little <span class="text-amber-700">Minds</span> Grow <span class="text-pink-700">Big Dreams</span>
                     </h1>
-                    <p class="text-slate-600 text-lg md:text-xl font-medium max-w-lg mx-auto md:mx-0">
+                    <p class="text-slate-600 text-lg md:text-xl font-medium max-w-xl mx-auto lg:mx-0">
                         A safe, fun &amp; nurturing place where children learn, play and grow every single day.
                     </p>
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
-                        <a href="#programs" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1">
+                        <a href="#programs" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 motion-safe:hover:-translate-y-0.5">
                             <span>Discover More</span>
-                            <i class="fa-solid fa-arrow-right"></i>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </a>
-                        <button type="button" onclick="openVideoModal()" class="inline-flex items-center gap-3 bg-white hover:bg-slate-50 text-sky-700 border-2 border-sky-200 font-bold font-heading px-6 py-3.5 rounded-full shadow-sm hover:shadow transition-all duration-300">
-                            <span class="w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center text-sm">
-                                <i class="fa-solid fa-play ml-0.5"></i>
+                        <button type="button" onclick="openVideoModal()" class="inline-flex items-center gap-3 bg-white hover:bg-sky-50 text-sky-800 border-2 border-sky-300 font-bold font-heading px-6 py-3.5 rounded-full shadow-sm hover:shadow transition-all duration-300">
+                            <span class="w-8 h-8 rounded-full bg-sky-700 text-white flex items-center justify-center text-sm shrink-0">
+                                <i class="fa-solid fa-play ml-0.5" aria-hidden="true"></i>
                             </span>
                             <span>Watch Video</span>
                         </button>
                     </div>
+
+                    <!-- Trust stats -->
+                    <dl class="grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 pt-6 border-t border-sky-200/70">
+                        <div class="text-center lg:text-left">
+                            <dt class="sr-only">Anak didik</dt>
+                            <dd>
+                                <span class="block text-2xl font-extrabold font-heading text-sky-800">250+</span>
+                                <span class="text-xs font-bold uppercase tracking-wide text-slate-600">Happy Kids</span>
+                            </dd>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <dt class="sr-only">Pengajar</dt>
+                            <dd>
+                                <span class="block text-2xl font-extrabold font-heading text-sky-800">18</span>
+                                <span class="text-xs font-bold uppercase tracking-wide text-slate-600">Teachers</span>
+                            </dd>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <dt class="sr-only">Tahun pengalaman</dt>
+                            <dd>
+                                <span class="block text-2xl font-extrabold font-heading text-sky-800">12+</span>
+                                <span class="text-xs font-bold uppercase tracking-wide text-slate-600">Years</span>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
 
-                <!-- Right Visual/Illustration -->
+                <!-- Right Visual -->
                 <div class="relative flex justify-center items-center">
                     <div class="w-full max-w-lg relative">
-                        <div class="relative z-10 bg-sky-200/50 p-6 rounded-3xl border-4 border-white shadow-2xl backdrop-blur-sm">
+                        <div class="relative z-10 bg-white/60 p-4 sm:p-6 rounded-3xl border-4 border-white shadow-2xl backdrop-blur-sm">
                             <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80"
-                                 alt="Children learning together at Little Stars"
-                                 loading="lazy"
-                                 class="w-full h-80 object-cover rounded-2xl shadow-md border-2 border-white" />
-                            <!-- Cute Floating Badges -->
-                            <div class="absolute -top-6 -right-6 bg-pink-500 text-white p-4 rounded-full shadow-lg font-heading font-bold text-center text-xs border-4 border-white rotate-12">
-                                <i class="fa-solid fa-heart text-xl block mb-1"></i>
+                                 alt="Anak-anak belajar bersama di Little Stars Kids Learning Center"
+                                 width="800" height="600" fetchpriority="high" decoding="async"
+                                 class="photo w-full h-72 sm:h-80 object-cover rounded-2xl shadow-md" />
+                            <div class="absolute -top-4 -right-2 sm:-top-6 sm:-right-6 bg-pink-600 text-white px-4 py-3 rounded-full shadow-lg font-heading font-bold text-center text-xs border-4 border-white rotate-12">
+                                <i class="fa-solid fa-heart text-lg block mb-1" aria-hidden="true"></i>
                                 Happy Kids
                             </div>
-                            <div class="absolute -bottom-6 -left-6 bg-amber-400 text-slate-900 p-4 rounded-2xl shadow-lg font-heading font-bold flex items-center gap-3 border-4 border-white -rotate-6">
-                                <i class="fa-solid fa-bus text-2xl"></i>
-                                <div>
-                                    <span class="block text-xs uppercase text-slate-800">Safe Ride</span>
+                            <div class="absolute -bottom-5 -left-2 sm:-bottom-6 sm:-left-6 bg-amber-400 text-slate-900 px-4 py-3 rounded-2xl shadow-lg font-heading font-bold flex items-center gap-3 border-4 border-white -rotate-6">
+                                <i class="fa-solid fa-bus text-2xl" aria-hidden="true"></i>
+                                <span class="block text-left">
+                                    <span class="block text-[10px] uppercase text-slate-700 font-bold">Safe Ride</span>
                                     <span class="text-sm font-extrabold">School Bus</span>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -179,78 +238,78 @@
 
         <!-- Bottom Wave -->
         <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
-            <svg class="relative block w-full h-12 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+            <svg class="relative block w-full h-10 sm:h-12 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,152.47,130.83,221,112.55,255.48,103.42,288.75,81.1,321.39,56.44Z" fill="currentColor"></path>
             </svg>
         </div>
     </section>
 
     <!-- ================= FEATURE HIGHLIGHTS BAR ================= -->
-    <section class="relative z-20 -mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-                <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-shapes"></i>
-                </div>
-                <div>
-                    <h3 class="font-heading font-bold text-slate-800 text-lg">Play &amp; Learn</h3>
-                    <p class="text-xs text-slate-500 font-medium">Learning through fun and play</p>
-                </div>
+    <section class="relative z-20 -mt-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Keunggulan kami">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="bg-white p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 transition-transform duration-300 motion-safe:hover:-translate-y-1">
+                <span class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-solid fa-shapes" aria-hidden="true"></i>
+                </span>
+                <span class="block">
+                    <span class="block font-heading font-bold text-slate-800 text-lg">Play &amp; Learn</span>
+                    <span class="block text-xs text-slate-500 font-medium">Learning through fun and play</span>
+                </span>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-                <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <h3 class="font-heading font-bold text-slate-800 text-lg">Safe Environment</h3>
-                    <p class="text-xs text-slate-500 font-medium">Comfortable &amp; secure surroundings</p>
-                </div>
+            <div class="bg-white p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 transition-transform duration-300 motion-safe:hover:-translate-y-1">
+                <span class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                </span>
+                <span class="block">
+                    <span class="block font-heading font-bold text-slate-800 text-lg">Safe Environment</span>
+                    <span class="block text-xs text-slate-500 font-medium">Comfortable &amp; secure surroundings</span>
+                </span>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-                <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                </div>
-                <div>
-                    <h3 class="font-heading font-bold text-slate-800 text-lg">Expert Teachers</h3>
-                    <p class="text-xs text-slate-500 font-medium">Caring &amp; experienced educators</p>
-                </div>
+            <div class="bg-white p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 transition-transform duration-300 motion-safe:hover:-translate-y-1">
+                <span class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+                </span>
+                <span class="block">
+                    <span class="block font-heading font-bold text-slate-800 text-lg">Expert Teachers</span>
+                    <span class="block text-xs text-slate-500 font-medium">Caring &amp; experienced educators</span>
+                </span>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-                <div class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-face-smile"></i>
-                </div>
-                <div>
-                    <h3 class="font-heading font-bold text-slate-800 text-lg">Happy Kids</h3>
-                    <p class="text-xs text-slate-500 font-medium">Building confidence &amp; creativity</p>
-                </div>
+            <div class="bg-white p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 transition-transform duration-300 motion-safe:hover:-translate-y-1">
+                <span class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-700 flex items-center justify-center text-2xl shrink-0">
+                    <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+                </span>
+                <span class="block">
+                    <span class="block font-heading font-bold text-slate-800 text-lg">Happy Kids</span>
+                    <span class="block text-xs text-slate-500 font-medium">Building confidence &amp; creativity</span>
+                </span>
             </div>
         </div>
     </section>
 
     <!-- ================= ABOUT SECTION ================= -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-20 md:py-24 bg-white">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80"
-                         alt="Teacher reading with children at Little Stars"
-                         loading="lazy"
-                         class="w-full h-96 object-cover rounded-3xl shadow-xl border-4 border-sky-100" />
-                    <div class="absolute -bottom-6 -right-4 sm:right-6 bg-sky-600 text-white p-5 rounded-2xl shadow-xl border-4 border-white">
+                         alt="Guru membacakan cerita untuk anak-anak di Little Stars"
+                         width="800" height="600" loading="lazy" decoding="async"
+                         class="photo w-full h-80 sm:h-96 object-cover rounded-3xl shadow-xl border-4 border-sky-100" />
+                    <div class="absolute -bottom-6 right-4 sm:right-8 bg-sky-700 text-white px-6 py-4 rounded-2xl shadow-xl border-4 border-white">
                         <span class="block text-3xl font-extrabold font-heading leading-none">12+</span>
-                        <span class="text-xs uppercase tracking-wider font-bold text-sky-100">Years of Care</span>
+                        <span class="block text-xs uppercase tracking-wider font-bold text-sky-100">Years of Care</span>
                     </div>
                 </div>
 
                 <div class="space-y-5">
-                    <div class="inline-flex items-center gap-2 text-amber-500 font-bold font-heading text-lg">
-                        <i class="fa-solid fa-star text-sm"></i>
+                    <p class="inline-flex items-center gap-2 text-amber-700 font-bold font-heading text-lg">
+                        <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <span>About Us</span>
-                        <i class="fa-solid fa-star text-sm"></i>
-                    </div>
+                        <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
+                    </p>
                     <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 font-heading leading-tight">
                         A Second Home Where Every Child Feels Loved
                     </h2>
@@ -261,21 +320,21 @@
                     </p>
                     <ul class="space-y-3 text-slate-600 font-medium">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
                             <span>Small class sizes with dedicated, trained educators.</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
                             <span>Activity-based curriculum covering art, music, movement and early literacy.</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
                             <span>Regular parent updates and an always-open-door policy.</span>
                         </li>
                     </ul>
-                    <a href="#book-tour" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold font-heading px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+                    <a href="#book-tour" class="inline-flex items-center gap-2 bg-sky-700 hover:bg-sky-800 text-white font-bold font-heading px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 motion-safe:hover:-translate-y-0.5">
                         <span>Schedule a Visit</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -283,129 +342,158 @@
     </section>
 
     <!-- ================= OUR PROGRAMS SECTION ================= -->
-    <section id="programs" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 text-amber-500 font-bold font-heading text-lg mb-2">
-                    <i class="fa-solid fa-star text-sm"></i>
+    <section id="programs" class="py-20 md:py-24 bg-slate-50">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 max-w-3xl mx-auto">
+                <p class="inline-flex items-center gap-2 text-amber-700 font-bold font-heading text-lg mb-2">
+                    <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                     <span>Our Programs</span>
-                    <i class="fa-solid fa-star text-sm"></i>
-                </div>
+                    <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
+                </p>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 font-heading">
                     Tailored Education For Every Age Group
                 </h2>
+                <p class="text-slate-600 font-medium mt-3">
+                    Setiap program dirancang sesuai tahap tumbuh kembang anak, dengan kelas kecil dan pendampingan penuh.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
                 <!-- Program 1: Playgroup -->
-                <div class="bg-amber-50/70 rounded-3xl p-6 border border-amber-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300">
-                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-6 shadow-sm">
+                <article class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl motion-safe:hover:-translate-y-1">
+                    <div class="h-44 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=500&q=80"
-                             alt="Toddler in the playgroup program" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                             alt="Anak balita di program Playgroup" width="500" height="333" loading="lazy" decoding="async"
+                             class="photo w-full h-full object-cover transition-transform duration-500 motion-safe:hover:scale-105">
                     </div>
-                    <h3 class="text-2xl font-bold font-heading text-slate-800 mb-1">Playgroup</h3>
-                    <span class="inline-block bg-amber-200 text-amber-900 text-xs font-bold px-3 py-1 rounded-full mb-3">(1 - 2 Years)</span>
-                    <p class="text-slate-600 text-sm mb-6 font-medium">A joyful start with play, music &amp; stories.</p>
-                    <a href="#book-tour" class="mt-auto inline-flex items-center gap-2 text-amber-600 font-bold font-heading hover:text-amber-700">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
+                    <div class="p-6 flex flex-col flex-1 text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-between gap-3 mb-2 flex-wrap">
+                            <h3 class="text-xl font-bold font-heading text-slate-800">Playgroup</h3>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">1&ndash;2 Years</span>
+                        </div>
+                        <p class="text-slate-600 text-sm font-medium mb-5">A joyful start with play, music &amp; stories.</p>
+                        <a href="#book-tour" class="mt-auto inline-flex items-center justify-center sm:justify-start gap-2 text-amber-700 font-bold font-heading hover:text-amber-800">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </article>
 
                 <!-- Program 2: Nursery -->
-                <div class="bg-sky-50/70 rounded-3xl p-6 border border-sky-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300">
-                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-6 shadow-sm">
+                <article class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl motion-safe:hover:-translate-y-1">
+                    <div class="h-44 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=80"
-                             alt="Nursery children at play" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                             alt="Anak-anak di program Nursery" width="500" height="333" loading="lazy" decoding="async"
+                             class="photo w-full h-full object-cover transition-transform duration-500 motion-safe:hover:scale-105">
                     </div>
-                    <h3 class="text-2xl font-bold font-heading text-slate-800 mb-1">Nursery</h3>
-                    <span class="inline-block bg-sky-200 text-sky-900 text-xs font-bold px-3 py-1 rounded-full mb-3">(2 - 3 Years)</span>
-                    <p class="text-slate-600 text-sm mb-6 font-medium">Exploring, discovering &amp; growing together.</p>
-                    <a href="#book-tour" class="mt-auto inline-flex items-center gap-2 text-sky-600 font-bold font-heading hover:text-sky-700">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
+                    <div class="p-6 flex flex-col flex-1 text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-between gap-3 mb-2 flex-wrap">
+                            <h3 class="text-xl font-bold font-heading text-slate-800">Nursery</h3>
+                            <span class="inline-block bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">2&ndash;3 Years</span>
+                        </div>
+                        <p class="text-slate-600 text-sm font-medium mb-5">Exploring, discovering &amp; growing together.</p>
+                        <a href="#book-tour" class="mt-auto inline-flex items-center justify-center sm:justify-start gap-2 text-sky-700 font-bold font-heading hover:text-sky-800">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </article>
 
                 <!-- Program 3: Junior KG -->
-                <div class="bg-pink-50/70 rounded-3xl p-6 border border-pink-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300">
-                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-6 shadow-sm">
+                <article class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl motion-safe:hover:-translate-y-1">
+                    <div class="h-44 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=500&q=80"
-                             alt="Junior KG creative activity" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                             alt="Kegiatan kreatif Junior KG" width="500" height="333" loading="lazy" decoding="async"
+                             class="photo w-full h-full object-cover transition-transform duration-500 motion-safe:hover:scale-105">
                     </div>
-                    <h3 class="text-2xl font-bold font-heading text-slate-800 mb-1">Junior KG</h3>
-                    <span class="inline-block bg-pink-200 text-pink-900 text-xs font-bold px-3 py-1 rounded-full mb-3">(3 - 4 Years)</span>
-                    <p class="text-slate-600 text-sm mb-6 font-medium">Building skills through creative activities.</p>
-                    <a href="#book-tour" class="mt-auto inline-flex items-center gap-2 text-pink-600 font-bold font-heading hover:text-pink-700">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
+                    <div class="p-6 flex flex-col flex-1 text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-between gap-3 mb-2 flex-wrap">
+                            <h3 class="text-xl font-bold font-heading text-slate-800">Junior KG</h3>
+                            <span class="inline-block bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">3&ndash;4 Years</span>
+                        </div>
+                        <p class="text-slate-600 text-sm font-medium mb-5">Building skills through creative activities.</p>
+                        <a href="#book-tour" class="mt-auto inline-flex items-center justify-center sm:justify-start gap-2 text-pink-700 font-bold font-heading hover:text-pink-800">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </article>
 
                 <!-- Program 4: Senior KG -->
-                <div class="bg-emerald-50/70 rounded-3xl p-6 border border-emerald-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300">
-                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-6 shadow-sm">
+                <article class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl motion-safe:hover:-translate-y-1">
+                    <div class="h-44 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80"
-                             alt="Senior KG children learning" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                             alt="Anak-anak Senior KG sedang belajar" width="500" height="333" loading="lazy" decoding="async"
+                             class="photo w-full h-full object-cover transition-transform duration-500 motion-safe:hover:scale-105">
                     </div>
-                    <h3 class="text-2xl font-bold font-heading text-slate-800 mb-1">Senior KG</h3>
-                    <span class="inline-block bg-emerald-200 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-3">(4 - 5 Years)</span>
-                    <p class="text-slate-600 text-sm mb-6 font-medium">Preparing for the future with confidence.</p>
-                    <a href="#book-tour" class="mt-auto inline-flex items-center gap-2 text-emerald-600 font-bold font-heading hover:text-emerald-700">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
+                    <div class="p-6 flex flex-col flex-1 text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-between gap-3 mb-2 flex-wrap">
+                            <h3 class="text-xl font-bold font-heading text-slate-800">Senior KG</h3>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">4&ndash;5 Years</span>
+                        </div>
+                        <p class="text-slate-600 text-sm font-medium mb-5">Preparing for the future with confidence.</p>
+                        <a href="#book-tour" class="mt-auto inline-flex items-center justify-center sm:justify-start gap-2 text-emerald-700 font-bold font-heading hover:text-emerald-800">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- ================= FUN ACTIVITIES SECTION ================= -->
-    <section id="activities" class="py-20 bg-sky-600 text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="activities" class="py-20 md:py-24 bg-sky-pattern text-white relative overflow-hidden">
+        <div class="absolute inset-0 texture-dots opacity-60" aria-hidden="true"></div>
+
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <!-- Left Title & Button -->
                 <div class="lg:col-span-4 space-y-6 text-center lg:text-left">
+                    <p class="inline-flex items-center gap-2 bg-sky-900/60 border border-white/20 text-amber-200 text-xs sm:text-sm font-bold font-heading px-4 py-2 rounded-full">
+                        <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                        <span>Activities</span>
+                    </p>
                     <h2 class="text-3xl sm:text-4xl font-extrabold font-heading leading-tight">
                         Fun Activities <br class="hidden lg:block"/>Happy Learning
                     </h2>
                     <p class="text-sky-100 font-medium">
                         From arts to adventures, every activity is a step towards growth.
                     </p>
-                    <a href="#gallery" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-6 py-3.5 rounded-full shadow-lg transition-all duration-300">
+                    <a href="#gallery" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold font-heading px-6 py-3.5 rounded-full shadow-lg transition-all duration-300 motion-safe:hover:-translate-y-0.5">
                         <span>View All Activities</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 
                 <!-- Right Activity Circles Grid -->
-                <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
                     <div class="flex flex-col items-center group">
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-3 group-hover:scale-105 transition-transform duration-300">
-                            <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=400&q=80" alt="Art &amp; Craft" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-heading font-bold text-center text-lg">Art &amp; Craft</h4>
+                        <span class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 transition-transform duration-300 motion-safe:group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Art &amp; Craft" width="400" height="400" loading="lazy" decoding="async" class="photo w-full h-full object-cover">
+                        </span>
+                        <h3 class="font-heading font-bold text-center text-base sm:text-lg">Art &amp; Craft</h3>
                     </div>
 
                     <div class="flex flex-col items-center group">
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-3 group-hover:scale-105 transition-transform duration-300">
-                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Music &amp; Dance" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-heading font-bold text-center text-lg">Music &amp; Dance</h4>
+                        <span class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 transition-transform duration-300 motion-safe:group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Music &amp; Dance" width="400" height="400" loading="lazy" decoding="async" class="photo w-full h-full object-cover">
+                        </span>
+                        <h3 class="font-heading font-bold text-center text-base sm:text-lg">Music &amp; Dance</h3>
                     </div>
 
                     <div class="flex flex-col items-center group">
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-3 group-hover:scale-105 transition-transform duration-300">
-                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Outdoor Play" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-heading font-bold text-center text-lg">Outdoor Play</h4>
+                        <span class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 transition-transform duration-300 motion-safe:group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Outdoor Play" width="400" height="400" loading="lazy" decoding="async" class="photo w-full h-full object-cover">
+                        </span>
+                        <h3 class="font-heading font-bold text-center text-base sm:text-lg">Outdoor Play</h3>
                     </div>
 
                     <div class="flex flex-col items-center group">
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-3 group-hover:scale-105 transition-transform duration-300">
-                            <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=400&q=80" alt="Story Time" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-heading font-bold text-center text-lg">Story Time</h4>
+                        <span class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 transition-transform duration-300 motion-safe:group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Story Time" width="400" height="400" loading="lazy" decoding="async" class="photo w-full h-full object-cover">
+                        </span>
+                        <h3 class="font-heading font-bold text-center text-base sm:text-lg">Story Time</h3>
                     </div>
                 </div>
             </div>
@@ -413,85 +501,105 @@
     </section>
 
     <!-- ================= GALLERY SECTION ================= -->
-    <section id="gallery" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 text-amber-500 font-bold font-heading text-lg mb-2">
-                    <i class="fa-solid fa-star text-sm"></i>
+    <section id="gallery" class="py-20 md:py-24 bg-white">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 max-w-3xl mx-auto">
+                <p class="inline-flex items-center gap-2 text-amber-700 font-bold font-heading text-lg mb-2">
+                    <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                     <span>Gallery</span>
-                    <i class="fa-solid fa-star text-sm"></i>
-                </div>
+                    <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
+                </p>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 font-heading">
                     Little Moments, Big Smiles
                 </h2>
+                <p class="text-slate-600 font-medium mt-3">
+                    Intip keseharian anak-anak kami di kelas, taman bermain dan ruang berkarya.
+                </p>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <figure class="group relative rounded-3xl overflow-hidden shadow-md col-span-2 row-span-2">
-                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80" alt="Children playing together" loading="lazy" class="w-full h-64 sm:h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-sm font-bold font-heading p-4">Playtime Together</figcaption>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                <figure class="group relative rounded-3xl overflow-hidden shadow-md col-span-2 lg:row-span-2">
+                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80"
+                         alt="Anak-anak bermain bersama" width="800" height="600" loading="lazy" decoding="async"
+                         class="photo w-full h-56 sm:h-72 lg:h-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105">
+                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/85 to-transparent text-white text-sm font-bold font-heading p-4 pt-10">Playtime Together</figcaption>
                 </figure>
 
                 <figure class="group relative rounded-3xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=80" alt="Art and craft session" loading="lazy" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-xs font-bold font-heading p-3">Art &amp; Craft</figcaption>
+                    <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=80" alt="Sesi art and craft" width="500" height="333" loading="lazy" decoding="async" class="photo w-full h-36 sm:h-40 object-cover transition-transform duration-500 motion-safe:group-hover:scale-105">
+                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/85 to-transparent text-white text-xs font-bold font-heading p-3 pt-8">Art &amp; Craft</figcaption>
                 </figure>
 
                 <figure class="group relative rounded-3xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=500&q=80" alt="Outdoor games" loading="lazy" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-xs font-bold font-heading p-3">Outdoor Games</figcaption>
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=500&q=80" alt="Permainan di luar ruangan" width="500" height="333" loading="lazy" decoding="async" class="photo w-full h-36 sm:h-40 object-cover transition-transform duration-500 motion-safe:group-hover:scale-105">
+                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/85 to-transparent text-white text-xs font-bold font-heading p-3 pt-8">Outdoor Games</figcaption>
                 </figure>
 
                 <figure class="group relative rounded-3xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=500&q=80" alt="Story time circle" loading="lazy" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-xs font-bold font-heading p-3">Story Time</figcaption>
+                    <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=500&q=80" alt="Lingkaran story time" width="500" height="333" loading="lazy" decoding="async" class="photo w-full h-36 sm:h-40 object-cover transition-transform duration-500 motion-safe:group-hover:scale-105">
+                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/85 to-transparent text-white text-xs font-bold font-heading p-3 pt-8">Story Time</figcaption>
                 </figure>
 
                 <figure class="group relative rounded-3xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=500&q=80" alt="Music and dance class" loading="lazy" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-xs font-bold font-heading p-3">Music &amp; Dance</figcaption>
+                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=500&q=80" alt="Kelas musik dan tari" width="500" height="333" loading="lazy" decoding="async" class="photo w-full h-36 sm:h-40 object-cover transition-transform duration-500 motion-safe:group-hover:scale-105">
+                    <figcaption class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/85 to-transparent text-white text-xs font-bold font-heading p-3 pt-8">Music &amp; Dance</figcaption>
                 </figure>
             </div>
         </div>
     </section>
 
     <!-- ================= APP & SCHOOL TOUR FORM SECTION ================= -->
-    <section id="book-tour" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
+    <section id="book-tour" class="py-20 md:py-24 bg-slate-50">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
                 <!-- App Download Mockup -->
-                <div class="lg:col-span-6 flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl">
+                <div class="lg:col-span-6 flex flex-col sm:flex-row items-center gap-8 bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-xl">
                     <!-- Phone Graphic -->
-                    <div class="w-48 h-80 bg-sky-900 rounded-[2.5rem] border-4 border-slate-800 shadow-2xl p-3 flex flex-col justify-between relative overflow-hidden flex-shrink-0">
-                        <div class="w-20 h-4 bg-slate-800 rounded-full mx-auto mb-2"></div>
+                    <div class="w-44 h-80 bg-sky-900 rounded-[2.5rem] border-4 border-slate-700 shadow-2xl p-3 flex flex-col justify-between relative overflow-hidden shrink-0" aria-hidden="true">
+                        <div class="w-20 h-4 bg-slate-700 rounded-full mx-auto mb-2"></div>
                         <div class="bg-sky-50 rounded-2xl p-4 text-center flex-1 flex flex-col justify-center items-center">
-                            <i class="fa-solid fa-star text-3xl text-amber-400 mb-2"></i>
-                            <h5 class="font-heading text-xs font-bold text-sky-900">Welcome to</h5>
-                            <h4 class="font-heading text-sm font-extrabold text-sky-600">Little Stars!</h4>
-                            <div class="w-12 h-12 bg-amber-400 rounded-full mt-3 flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-star text-3xl text-amber-500 mb-2"></i>
+                            <span class="font-heading text-xs font-bold text-sky-900">Welcome to</span>
+                            <span class="font-heading text-sm font-extrabold text-sky-700">Little Stars!</span>
+                            <span class="w-12 h-12 bg-amber-400 rounded-full mt-3 flex items-center justify-center text-white text-xl">
                                 <i class="fa-solid fa-face-smile"></i>
-                            </div>
+                            </span>
                         </div>
-                        <div class="w-8 h-1 bg-slate-700 rounded-full mx-auto mt-2"></div>
+                        <div class="w-8 h-1 bg-slate-500 rounded-full mx-auto mt-2"></div>
                     </div>
+
                     <!-- App Details -->
-                    <div class="space-y-4 text-center md:text-left">
-                        <h3 class="text-3xl font-extrabold font-heading text-slate-800">Stay Connected With Our App</h3>
-                        <p class="text-slate-500 font-medium">Get updates, photos, notices and more - all in one place.</p>
-                        <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
+                    <div class="space-y-4 text-center sm:text-left">
+                        <h2 class="text-3xl font-extrabold font-heading text-slate-800">Stay Connected With Our App</h2>
+                        <p class="text-slate-600 font-medium">Get updates, photos, notices and more - all in one place.</p>
+                        <ul class="space-y-2 text-sm text-slate-600 font-medium text-left">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
+                                <span>Daily activity photos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
+                                <span>Pengumuman &amp; jadwal kelas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-sky-700 mt-1 shrink-0" aria-hidden="true"></i>
+                                <span>Absensi dan laporan perkembangan</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-3 pt-1">
                             <a href="#" class="bg-slate-900 text-white px-4 py-2.5 rounded-xl inline-flex items-center gap-3 hover:bg-slate-800 transition-colors">
-                                <i class="fa-brands fa-google-play text-2xl"></i>
+                                <i class="fa-brands fa-google-play text-2xl" aria-hidden="true"></i>
                                 <span class="text-left leading-tight">
                                     <span class="block text-[9px] uppercase tracking-wider text-slate-300">GET IT ON</span>
-                                    <span class="text-xs font-bold font-heading">Google Play</span>
+                                    <span class="block text-xs font-bold font-heading">Google Play</span>
                                 </span>
                             </a>
                             <a href="#" class="bg-slate-900 text-white px-4 py-2.5 rounded-xl inline-flex items-center gap-3 hover:bg-slate-800 transition-colors">
-                                <i class="fa-brands fa-apple text-2xl"></i>
+                                <i class="fa-brands fa-apple text-2xl" aria-hidden="true"></i>
                                 <span class="text-left leading-tight">
                                     <span class="block text-[9px] uppercase tracking-wider text-slate-300">Download on the</span>
-                                    <span class="text-xs font-bold font-heading">App Store</span>
+                                    <span class="block text-xs font-bold font-heading">App Store</span>
                                 </span>
                             </a>
                         </div>
@@ -499,34 +607,43 @@
                 </div>
 
                 <!-- Book Tour Form Card -->
-                <div class="lg:col-span-6 bg-amber-400 p-8 sm:p-10 rounded-3xl shadow-xl relative border-4 border-amber-300">
-                    <div class="absolute -top-5 -right-5 bg-white text-amber-500 w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-md border-2 border-amber-200">
+                <div class="lg:col-span-6 bg-amber-400 p-6 sm:p-10 rounded-3xl shadow-xl relative border-4 border-amber-300">
+                    <div class="absolute -top-5 -right-3 sm:-right-5 bg-white text-amber-700 w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-md border-2 border-amber-200" aria-hidden="true">
                         <i class="fa-solid fa-face-smile-wink"></i>
                     </div>
 
-                    <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 mb-6 text-center">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 mb-2 text-center">
                         Book a Free School Tour
-                    </h3>
+                    </h2>
+                    <p class="text-center text-slate-800 font-medium text-sm mb-6">
+                        Isi data di bawah ini, tim kami akan menghubungi Anda dalam 1x24 jam.
+                    </p>
 
                     <form id="tourForm" onsubmit="handleFormSubmit(event)" class="space-y-4" novalidate>
                         <div>
-                            <label for="tourName" class="sr-only">Your Name</label>
+                            <label for="tourName" class="block text-sm font-bold text-slate-900 mb-1.5">Nama Lengkap</label>
                             <input id="tourName" name="name" type="text" placeholder="Your Name" required autocomplete="name"
-                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-600 font-medium placeholder-slate-400 text-slate-800 shadow-sm">
+                                   aria-describedby="tourNameError"
+                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-700 font-medium placeholder-slate-500 text-slate-800 shadow-sm">
+                            <p id="tourNameError" class="hidden text-xs font-bold text-red-800 mt-1"></p>
                         </div>
                         <div>
-                            <label for="tourEmail" class="sr-only">Your Email</label>
+                            <label for="tourEmail" class="block text-sm font-bold text-slate-900 mb-1.5">Email</label>
                             <input id="tourEmail" name="email" type="email" placeholder="Your Email" required autocomplete="email"
-                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-600 font-medium placeholder-slate-400 text-slate-800 shadow-sm">
+                                   aria-describedby="tourEmailError"
+                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-700 font-medium placeholder-slate-500 text-slate-800 shadow-sm">
+                            <p id="tourEmailError" class="hidden text-xs font-bold text-red-800 mt-1"></p>
                         </div>
                         <div>
-                            <label for="tourPhone" class="sr-only">Your Phone</label>
+                            <label for="tourPhone" class="block text-sm font-bold text-slate-900 mb-1.5">Nomor Telepon</label>
                             <input id="tourPhone" name="phone" type="tel" placeholder="Your Phone" required autocomplete="tel"
-                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-600 font-medium placeholder-slate-400 text-slate-800 shadow-sm">
+                                   aria-describedby="tourPhoneError"
+                                   class="w-full px-5 py-3.5 rounded-xl bg-white border border-amber-200 focus:outline-none focus:ring-2 focus:ring-sky-700 font-medium placeholder-slate-500 text-slate-800 shadow-sm">
+                            <p id="tourPhoneError" class="hidden text-xs font-bold text-red-800 mt-1"></p>
                         </div>
-                        <button type="submit" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-extrabold font-heading py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                        <button type="submit" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-extrabold font-heading py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-2 motion-safe:hover:-translate-y-0.5">
                             <span>Book Now</span>
-                            <i class="fa-solid fa-arrow-right"></i>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </button>
                         <p id="formStatus" class="hidden text-center text-sm font-bold text-sky-900 pt-1" role="status" aria-live="polite"></p>
                     </form>
@@ -536,23 +653,23 @@
     </section>
 
     <!-- ================= FACILITIES BAR ================= -->
-    <section class="bg-white border-y border-slate-100 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <section class="bg-white border-y border-slate-100 py-10" aria-label="Fasilitas">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                 <div class="flex items-center justify-center gap-3 text-slate-700 font-bold font-heading">
-                    <span class="text-2xl" aria-hidden="true">🍎</span>
+                    <span class="text-2xl" aria-hidden="true">&#127822;</span>
                     <span>Healthy Meals</span>
                 </div>
                 <div class="flex items-center justify-center gap-3 text-slate-700 font-bold font-heading">
-                    <span class="text-2xl" aria-hidden="true">🚌</span>
+                    <span class="text-2xl" aria-hidden="true">&#128652;</span>
                     <span>Transport Facility</span>
                 </div>
                 <div class="flex items-center justify-center gap-3 text-slate-700 font-bold font-heading">
-                    <span class="text-2xl" aria-hidden="true">📷</span>
+                    <span class="text-2xl" aria-hidden="true">&#128247;</span>
                     <span>CCTV Security</span>
                 </div>
                 <div class="flex items-center justify-center gap-3 text-slate-700 font-bold font-heading">
-                    <span class="text-2xl" aria-hidden="true">🔔</span>
+                    <span class="text-2xl" aria-hidden="true">&#128276;</span>
                     <span>Regular Updates</span>
                 </div>
             </div>
@@ -560,43 +677,45 @@
     </section>
 
     <!-- ================= FOOTER ================= -->
-    <footer id="contact" class="bg-sky-600 text-white pt-16 pb-8 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-sky-500">
+    <footer id="contact" class="bg-sky-800 text-white pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute inset-0 texture-dots opacity-40" aria-hidden="true"></div>
+
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-sky-700">
 
                 <!-- Col 1: Brand Info -->
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center text-white shadow-md">
-                            <i class="fa-solid fa-star text-xl"></i>
-                        </div>
-                        <div>
+                <div class="lg:col-span-2 space-y-4 text-center sm:text-left">
+                    <div class="flex items-center gap-3 justify-center sm:justify-start">
+                        <span class="w-11 h-11 rounded-xl bg-amber-400 flex items-center justify-center text-white shadow-md shrink-0">
+                            <i class="fa-solid fa-star text-xl" aria-hidden="true"></i>
+                        </span>
+                        <span class="block text-left">
                             <span class="block text-xl font-bold font-heading text-white leading-none">Little Stars</span>
-                            <span class="text-[9px] tracking-wider uppercase font-bold text-amber-300">Kids Learning Center</span>
-                        </div>
+                            <span class="block text-[10px] tracking-wider uppercase font-bold text-amber-300">Kids Learning Center</span>
+                        </span>
                     </div>
-                    <p class="text-sky-100 text-sm max-w-sm">
+                    <p class="text-sky-100 text-sm max-w-sm mx-auto sm:mx-0">
                         Nurturing young minds with love, care &amp; quality education.
                     </p>
-                    <div class="flex gap-3 pt-2">
-                        <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-sky-500 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-facebook-f"></i>
+                    <div class="flex gap-3 pt-2 justify-center sm:justify-start">
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-sky-500 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-instagram"></i>
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-sky-500 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-youtube"></i>
+                        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                         </a>
-                        <a href="#" aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-sky-500 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-whatsapp"></i>
+                        <a href="#" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-amber-400 hover:text-slate-900 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Col 2: Quick Links -->
-                <div>
-                    <h4 class="font-heading font-bold text-lg text-amber-300 mb-4">Quick Links</h4>
+                <nav aria-label="Tautan cepat">
+                    <h2 class="font-heading font-bold text-lg text-amber-300 mb-4">Quick Links</h2>
                     <ul class="space-y-2 text-sm text-sky-100">
                         <li><a href="#about" class="hover:text-amber-300 transition-colors">About Us</a></li>
                         <li><a href="#programs" class="hover:text-amber-300 transition-colors">Programs</a></li>
@@ -604,11 +723,11 @@
                         <li><a href="#gallery" class="hover:text-amber-300 transition-colors">Gallery</a></li>
                         <li><a href="#contact" class="hover:text-amber-300 transition-colors">Contact Us</a></li>
                     </ul>
-                </div>
+                </nav>
 
                 <!-- Col 3: Information -->
-                <div>
-                    <h4 class="font-heading font-bold text-lg text-amber-300 mb-4">Information</h4>
+                <nav aria-label="Informasi">
+                    <h2 class="font-heading font-bold text-lg text-amber-300 mb-4">Information</h2>
                     <ul class="space-y-2 text-sm text-sky-100">
                         <li><a href="#book-tour" class="hover:text-amber-300 transition-colors">Admission</a></li>
                         <li><a href="#" class="hover:text-amber-300 transition-colors">Fees Structure</a></li>
@@ -616,42 +735,44 @@
                         <li><a href="#gallery" class="hover:text-amber-300 transition-colors">Events</a></li>
                         <li><a href="#" class="hover:text-amber-300 transition-colors">FAQs</a></li>
                     </ul>
-                </div>
+                </nav>
 
                 <!-- Col 4: Contact Us -->
                 <div>
-                    <h4 class="font-heading font-bold text-lg text-amber-300 mb-4">Contact Us</h4>
+                    <h2 class="font-heading font-bold text-lg text-amber-300 mb-4">Contact Us</h2>
                     <ul class="space-y-3 text-sm text-sky-100">
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-amber-300"></i>
+                            <i class="fa-solid fa-phone text-amber-300 shrink-0" aria-hidden="true"></i>
                             <a href="tel:+1234567890" class="hover:text-amber-300 transition-colors">+123 456 7890</a>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-amber-300"></i>
-                            <a href="mailto:info@littlestars.com" class="hover:text-amber-300 transition-colors">info@littlestars.com</a>
+                            <i class="fa-solid fa-envelope text-amber-300 shrink-0" aria-hidden="true"></i>
+                            <a href="mailto:info@littlestars.com" class="hover:text-amber-300 transition-colors break-all">info@littlestars.com</a>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-amber-300 mt-1"></i>
+                            <i class="fa-solid fa-location-dot text-amber-300 mt-1 shrink-0" aria-hidden="true"></i>
                             <span>123 Happy Street, Kids City, 12345</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Bottom Copyright & Character Card -->
-            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-sky-200">
-                <p>&copy; 2024 Little Stars Kids Learning Center. All Rights Reserved.</p>
-                <div class="mt-4 md:mt-0 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-amber-300 font-heading font-bold">
-                    Learn • Play • Grow Together!
-                </div>
+            <!-- Bottom Copyright -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-sky-100">
+                <p>&copy; <span id="year">2024</span> Little Stars Kids Learning Center. All Rights Reserved.</p>
+                <p class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-amber-300 font-heading font-bold">
+                    Learn &bull; Play &bull; Grow Together!
+                </p>
             </div>
         </div>
     </footer>
 
     <!-- Video Modal -->
-    <div id="videoModal" class="fixed inset-0 bg-slate-900/80 z-50 hidden backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="School intro video">
+    <div id="videoModal" class="fixed inset-0 bg-slate-900/80 z-50 hidden backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Video perkenalan sekolah">
         <div class="bg-white rounded-3xl overflow-hidden max-w-3xl w-full relative">
-            <button type="button" onclick="closeVideoModal()" aria-label="Close video" class="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-700 w-10 h-10 rounded-full flex items-center justify-center font-bold z-10">✕</button>
+            <button type="button" id="videoCloseBtn" onclick="closeVideoModal()" aria-label="Tutup video" class="absolute top-3 right-3 bg-slate-100 hover:bg-slate-200 text-slate-700 w-11 h-11 rounded-full flex items-center justify-center font-bold z-10">
+                <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+            </button>
             <div class="aspect-video bg-black flex items-center justify-center">
                 <iframe id="videoFrame" class="w-full h-full" src="" title="School Intro Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -665,28 +786,36 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
+        function setMenu(open) {
+            mobileMenu.classList.toggle('hidden', !open);
+            mobileMenuBtn.setAttribute('aria-expanded', String(open));
+            mobileMenuBtn.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+            mobileMenuBtn.innerHTML = open
+                ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+                : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+        }
+
         mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('hidden') === false;
-            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+            setMenu(mobileMenu.classList.contains('hidden'));
         });
 
         // Close the mobile menu after choosing a link
         mobileMenu.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', () => setMenu(false));
         });
 
-        // Video Modal handlers
+        // Video modal
         const videoModal = document.getElementById('videoModal');
         const videoFrame = document.getElementById('videoFrame');
+        let lastFocused = null;
 
         function openVideoModal() {
+            lastFocused = document.activeElement;
             videoFrame.src = VIDEO_SRC;
             videoModal.classList.remove('hidden');
             videoModal.classList.add('flex');
             document.body.style.overflow = 'hidden';
+            document.getElementById('videoCloseBtn').focus();
         }
 
         function closeVideoModal() {
@@ -694,6 +823,7 @@
             videoModal.classList.remove('flex');
             videoFrame.src = '';
             document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
         }
 
         document.addEventListener('keydown', (e) => {
@@ -706,14 +836,68 @@
             if (e.target === videoModal) closeVideoModal();
         });
 
-        // Form Submit Handler
+        // Keep focus inside the modal while it is open
+        videoModal.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            const focusables = videoModal.querySelectorAll('button, iframe, a[href], [tabindex]:not([tabindex="-1"])');
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+
+        // Form handler
+        const FORM_MESSAGES = {
+            name: 'Mohon isi nama lengkap Anda.',
+            email: 'Mohon isi alamat email yang valid.',
+            phone: 'Mohon isi nomor telepon yang bisa dihubungi.'
+        };
+
+        function clearFieldErrors(form) {
+            form.querySelectorAll('[aria-describedby]').forEach((field) => {
+                field.classList.remove('border-red-500', 'border-2');
+                field.removeAttribute('aria-invalid');
+                const msg = document.getElementById(field.getAttribute('aria-describedby'));
+                if (msg) {
+                    msg.classList.add('hidden');
+                    msg.textContent = '';
+                }
+            });
+        }
+
+        function hideStatus() {
+            const status = document.getElementById('formStatus');
+            status.textContent = '';
+            status.classList.add('hidden');
+        }
+
         function handleFormSubmit(e) {
             e.preventDefault();
             const form = document.getElementById('tourForm');
             const status = document.getElementById('formStatus');
+            clearFieldErrors(form);
+            hideStatus();
 
             if (!form.checkValidity()) {
-                form.reportValidity();
+                form.querySelectorAll('input').forEach((field) => {
+                    if (!field.validity.valid) {
+                        field.classList.add('border-red-500', 'border-2');
+                        field.setAttribute('aria-invalid', 'true');
+                        const msg = document.getElementById(field.getAttribute('aria-describedby'));
+                        if (msg) {
+                            msg.textContent = FORM_MESSAGES[field.name] || 'Mohon periksa kembali kolom ini.';
+                            msg.classList.remove('hidden');
+                        }
+                    }
+                });
+                const firstInvalid = form.querySelector('[aria-invalid="true"]');
+                if (firstInvalid) firstInvalid.focus();
                 return;
             }
 
@@ -724,6 +908,7 @@
 
         // Highlight the nav link of the section currently in view
         const navLinks = document.querySelectorAll('.nav-link');
+        const ACTIVE_CLASSES = ['text-sky-700', 'bg-sky-50'];
         const sections = [...navLinks]
             .map((link) => document.querySelector(link.getAttribute('href')))
             .filter(Boolean);
@@ -733,16 +918,19 @@
                 if (!entry.isIntersecting) return;
                 navLinks.forEach((link) => {
                     const active = link.getAttribute('href') === '#' + entry.target.id;
-                    link.classList.toggle('text-sky-600', active);
-                    link.classList.toggle('font-bold', active);
-                    link.classList.toggle('border-b-2', active);
-                    link.classList.toggle('border-sky-600', active);
-                    link.classList.toggle('pb-1', active);
+                    ACTIVE_CLASSES.forEach((cls) => link.classList.toggle(cls, active));
+                    if (active) {
+                        link.setAttribute('aria-current', 'true');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
                 });
             });
-        }, { rootMargin: '-40% 0px -55% 0px' });
+        }, { rootMargin: '-35% 0px -60% 0px' });
 
         sections.forEach((section) => observer.observe(section));
+
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
